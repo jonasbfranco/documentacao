@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta content="Site de Documentação" property="og:site_name">
+  
+    <meta content="Como criar um novo usuário e habilitar para o grupo sudo no CentOS 8" property="og:title">
+  
+  
+    <meta content="article" property="og:type">
+  
+  
+    <meta content="Este blog foi desenvolvido para ajudar pessoas com seus conteudos de tutorias sobre
+ Linux, Servidores e sobre o Ambiente Corporativo em geral, mas pricipalmente para ser
+ um local de dessiminação de conteúdo informativo.
+" property="og:description">
+  
+  
+    <meta content="http://0.0.0.0:4000/como-criar-um-novo-usuario-e-habilitar-para-o-grupo-sudo-no-centos8/" property="og:url">
+  
+  
+    <meta content="2022-01-14T11:00:00-06:00" property="article:published_time">
+    <meta content="http://0.0.0.0:4000/about/" property="article:author">
+  
+  
+    <meta content="http://0.0.0.0:4000/assets/img/" property="og:image">
+  
+  
+    
+    <meta content="Linux" property="article:section">
+    
+  
+  
+    
+    <meta content="Linux" property="article:tag">
+    
+    <meta content="Servdirores" property="article:tag">
+    
+  
+
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:site" content="@">
+    <meta name="twitter:creator" content="@">
+  
+    <meta name="twitter:title" content="Como criar um novo usuário e habilitar para o grupo sudo no CentOS 8">
+  
+  
+    <meta name="twitter:url" content="http://0.0.0.0:4000/como-criar-um-novo-usuario-e-habilitar-para-o-grupo-sudo-no-centos8/">
+  
+  
+    <meta name="twitter:description" content="Este blog foi desenvolvido para ajudar pessoas com seus conteudos de tutorias sobre
+ Linux, Servidores e sobre o Ambiente Corporativo em geral, mas pricipalmente para ser
+ um local de dessiminação de conteúdo informativo.
+">
+  
+  
+    <meta name="twitter:image:src" content="http://0.0.0.0:4000/assets/img/">
+  
+
+
+	
+
+
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<meta name="description" content="">
+<meta property="og:image" content="">
+<link rel="shortcut icon" href="/assets/img/favicon/favicon.ico" type="image/x-icon">
+<link rel="apple-touch-icon" href="/assets/img/favicon/apple-touch-icon.png">
+<link rel="apple-touch-icon" sizes="72x72" href="/assets/img/favicon/apple-touch-icon-72x72.png">
+<link rel="apple-touch-icon" sizes="144x144" href="/assets/img/favicon/apple-touch-icon-144x144.png">
+<link href="https://fonts.googleapis.com/css?family=Merriweather:300|Raleway:400,700" rel="stylesheet">
+<!-- Font Awesome -->
+<link rel="stylesheet" href="/assets/font/font-awesome/css/font-awesome.min.css">
+<link rel="stylesheet" href="/assets/css/style.css">
+<title>Como criar um novo usuário e habilitar para o grupo sudo no CentOS 8</title>
+<!-- Begin Jekyll SEO tag v2.7.1 -->
+<title>Como criar um novo usuário e habilitar para o grupo sudo no CentOS 8 | Site de Documentação</title>
+<meta name="generator" content="Jekyll v4.2.1" />
+<meta property="og:title" content="Como criar um novo usuário e habilitar para o grupo sudo no CentOS 8" />
+<meta name="author" content="Jonas Franco" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="O comando sudo fornece um mecanismo para a concessão de privilégios de administrador (normalmente, apenas disponível para o usuário root) para usuários normais. Este guia mostrará como criar um novo usuário com acesso sudo no CentOS 8, sem precisar modificar o arquivo /etc/sudoers do seu servidor. Se quiser configurar o sudo para um usuário existente do CentOS, pule para passo 3" />
+<meta property="og:description" content="O comando sudo fornece um mecanismo para a concessão de privilégios de administrador (normalmente, apenas disponível para o usuário root) para usuários normais. Este guia mostrará como criar um novo usuário com acesso sudo no CentOS 8, sem precisar modificar o arquivo /etc/sudoers do seu servidor. Se quiser configurar o sudo para um usuário existente do CentOS, pule para passo 3" />
+<link rel="canonical" href="http://0.0.0.0:4000/como-criar-um-novo-usuario-e-habilitar-para-o-grupo-sudo-no-centos8/" />
+<meta property="og:url" content="http://0.0.0.0:4000/como-criar-um-novo-usuario-e-habilitar-para-o-grupo-sudo-no-centos8/" />
+<meta property="og:site_name" content="Site de Documentação" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2022-01-14T11:00:00-06:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Como criar um novo usuário e habilitar para o grupo sudo no CentOS 8" />
+<script type="application/ld+json">
+{"url":"http://0.0.0.0:4000/como-criar-um-novo-usuario-e-habilitar-para-o-grupo-sudo-no-centos8/","author":{"@type":"Person","name":"Jonas Franco"},"@type":"BlogPosting","description":"O comando sudo fornece um mecanismo para a concessão de privilégios de administrador (normalmente, apenas disponível para o usuário root) para usuários normais. Este guia mostrará como criar um novo usuário com acesso sudo no CentOS 8, sem precisar modificar o arquivo /etc/sudoers do seu servidor. Se quiser configurar o sudo para um usuário existente do CentOS, pule para passo 3","headline":"Como criar um novo usuário e habilitar para o grupo sudo no CentOS 8","dateModified":"2022-01-14T11:00:00-06:00","datePublished":"2022-01-14T11:00:00-06:00","mainEntityOfPage":{"@type":"WebPage","@id":"http://0.0.0.0:4000/como-criar-um-novo-usuario-e-habilitar-para-o-grupo-sudo-no-centos8/"},"@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+<script type="text/javascript" src="/assets/js/darkmode.js"></script>
+
+</head><body>
+  <main class="container">
+    <section class="about">
+      <div class="about-header condensed">
+      <div class="about-title">
+      <a href="/">
+        
+        <img src="/assets/img/jonas.jpg" alt="Jonas Franco" />
+        
+      </a>
+      <h2 id="title">
+        <a href="/">Jonas Franco</a>
+      </h2>
+      </div><p class="tagline">Developer, Designer, System Analist, Career Coach</p></div>
+      
+      <ul class="social about-footer condensed"><a href="https://github.com/jonasbfranco" target="_blank">
+          <li>
+            <i class="icon-github-circled"></i>
+          </li>
+        </a><a href="https://www.linkedin.com/in/jonasbfranco" target="_blank">
+          <li>
+            <i class="icon-linkedin-squared"></i>
+          </li>
+        </a><a href="https://twitter.com/jonasbfranco" target="_blank">
+          <li>
+            <i class="icon-twitter-squared"></i>
+          </li>
+        </a></ul><p class="about-footer condensed">Jonas Franco &copy;
+        2022</p><div class="about-footer condensed">
+        <p>Dark Mode
+          <i class="icon-moon"></i>
+          <label class="switch">
+            <input type="checkbox" class="dark-mode-toggle">
+            <span class="slider round" onclick="toggleDarkMode()"></span>
+          </label>
+        </p>
+      </div>
+    </section>
+    <section class="content">
+      <style>
+ li a {
+   text-transform: capitalize;
+   font-style: normal;
+   font-weight: bolder;
+   text-decoration: none !important;
+ }
+</style><div class="post-container">
+  <a class="post-link" href="/como-criar-um-novo-usuario-e-habilitar-para-o-grupo-sudo-no-centos8/">
+    <h2 class="post-title">Como criar um novo usuário e habilitar para o grupo sudo no CentOS 8</h2>
+  </a>
+  <div class="post-meta">
+    <div class="post-date"><i class="icon-calendar"></i>14 Jan, 2022</div><ul class="post-categories"><!-- <li>Linux</li> -->
+      <li><a href="/tags#Linux" class="">&#35; Linux</a></li><!-- <li>Servdirores</li> -->
+      <li><a href="/tags#Servdirores" class="">&#35; Servdirores</a></li></ul></div>
+  <div class="post">
+    <p>O comando <strong>sudo</strong> fornece um mecanismo para a concessão de privilégios de administrador (normalmente, apenas disponível para o usuário <strong>root</strong>) para usuários normais. Este guia mostrará como criar um novo usuário com acesso <strong>sudo no CentOS 8</strong>, sem precisar modificar o arquivo <strong>/etc/sudoers</strong> do seu servidor. Se quiser configurar o sudo para um usuário existente do CentOS, pule para passo 3</p>
+
+<h2 id="passo-1--fazendo-login-em-seu-servidor">Passo 1 — Fazendo login em seu servidor</h2>
+<p>Acesse seu servidor via SSH como usuário <strong>root</strong>:</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>ssh root@your_server_ip_address
+</code></pre></div></div>
+
+<p>Use seu endereço IP ou nome do host do seu servidor no lugar de <strong>your_server_ip_address</strong> acima.</p>
+
+<h2 id="passo-2--adicionando-um-novo-usuário-ao-sistema">Passo 2 — Adicionando um novo usuário ao sistema</h2>
+
+<p>Use o comando adduser para adicionar um novo usuário ao seu sistema:</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># adduser jonas</span>
+</code></pre></div></div>
+
+<p>O <strong>jonas</strong> deve ser substituído pelo nome de usuário que você gostaria de criar.</p>
+
+<p>Use o comando <strong>passwd</strong> para atualizar a nova senha do usuário:</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># passwd jonas</span>
+</code></pre></div></div>
+
+<p>Lembre-se de substituir o <strong>jonas</strong> pelo usuário que você acabou de criar. Você será solicitado a colocar uma nova senha duas vezes:</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Output
+
+Changing password <span class="k">for </span>user jonas.
+New password:
+Retype new password:
+passwd: all authentication tokens updated successfully.
+
+</code></pre></div></div>
+
+<h2 id="passo-3--adicionando-o-usuário-ao-grupo-wheel">Passo 3 — Adicionando o usuário ao grupo wheel</h2>
+<p>Use o comando usermod para adicionar o usuário ao grupo <strong>wheel</strong>:</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># usermod -aG wheel jonas</span>
+
+</code></pre></div></div>
+
+<p>Novamente, o <strong>jonas</strong> deve ser substituído pelo nome de usuário a que você gostaria de conceder os privilégios sudo. Por padrão, no CentOS, todos os membros do grupo wheel têm acesso sudo completo.</p>
+
+<h2 id="passo-4--testando-o-acesso-sudo">Passo 4 — Testando o acesso sudo</h2>
+<p>Para testar que as novas permissões sudo estejam em funcionamento, utilize primeiro o comando <strong>su</strong> para trocar do usuário root para a nova conta de usuário:</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># su - jonas</span>
+</code></pre></div></div>
+
+<p>Como o novo usuário, verifique se consegue usar o <strong>sudo</strong>, colocando sudo antes do comando que deseja executar com privilégios de superusuário:</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">sudo </span>command_to_run
+</code></pre></div></div>
+
+<p>Por exemplo, você pode listar o conteúdo do diretório <strong>/root</strong>, que é normalmente acessível apenas para o usuário root:</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">sudo ls</span> <span class="nt">-la</span> /root
+</code></pre></div></div>
+
+<p>A primeira vez que usar o <strong>sudo</strong> em uma sessão, será solicitada a senha da conta do usuário. Digite a senha para continuar:</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Output
+<span class="nv">$ </span><span class="o">[</span><span class="nb">sudo</span><span class="o">]</span> password <span class="k">for </span>jonas:
+</code></pre></div></div>
+
+<p><br /></p>
+
+<blockquote>
+  <p>Nota: isso não está pedindo pela senha root! Digite a senha do usuário habilitado para sudo, não a senha root.</p>
+</blockquote>
+
+<p><br /></p>
+
+<p>Se o usuário estiver no grupo correto e você digitar a senha corretamente, o comando que emitiu com sudo será executado com privilégios <strong>root</strong>.</p>
+
+<h2 id="conclusão">Conclusão</h2>
+<p>Neste tutorial de início rápido, criamos uma nova conta de usuário e a adicionamos ao grupo wheel para habilitar o acesso sudo. Para obter informações mais detalhadas sobre como configurar um servidor CentOS 8, leia nosso tutorial Configuração inicial de servidor com o CentOS 8.</p>
+
+<p><a href="https://www.digitalocean.com/community/tutorials/how-to-create-a-new-sudo-enabled-user-on-centos-8-quickstart-pt">Link original</a></p>
+
+  </div></div>
+
+    </section>
+    <footer class="condensed">
+      <ul class="social about-footer condensed"><a href="https://github.com/jonasbfranco" target="_blank">
+          <li>
+            <i class="icon-github-circled"></i>
+          </li>
+        </a><a href="https://www.linkedin.com/in/jonasbfranco" target="_blank">
+          <li>
+            <i class="icon-linkedin-squared"></i>
+          </li>
+        </a><a href="https://twitter.com/jonasbfranco" target="_blank">
+          <li>
+            <i class="icon-twitter-squared"></i>
+          </li>
+        </a></ul><p class="about-footer condensed">Jonas Franco &copy;
+        2022</p><div class="about-footer condensed">
+        <p>Dark Mode
+          <i class="icon-moon"></i>
+          <label class="switch">
+            <input type="checkbox" class="dark-mode-toggle">
+            <span class="slider round" onclick="toggleDarkMode()"></span>
+          </label>
+        </p>
+      </div>
+    </footer>
+  </main>
+  
+  <script type="text/javascript" src="/assets/js/darkmode.js"></script>
+  
+  <script src="/assets/js/simple-jekyll-search.min.js"></script>
+  <script src="/assets/js/search.js"></script>
+  
+</body>
+
+</html>

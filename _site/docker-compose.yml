@@ -1,0 +1,16 @@
+version: '3'
+
+services:
+  jekyll:
+    image: jekyll/jekyll:4.0
+    container_name: blog-documentacao
+    command: jekyll serve --watch --force_polling --verbose --livereload
+    ports:
+      - 4000:4000
+    volumes:
+      - .:/srv/jekyll
+
+##################################
+# Para buildar
+##################################
+# ocker run --rm -it -v $(pwd):/srv/jekyll -p 4000:4000 jekyll/jekyll:4.0 sh -c "jekyll build && bundle exec jekyll serve -H 0.0.0.0 -t"

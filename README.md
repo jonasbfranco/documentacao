@@ -1,9 +1,3 @@
-# Blog Documentacao Linux, Servidores e Datasul
-
-
-
-# Baseado no projeto abaixo.
-
 # plainwhite
 
 Simplistic jekyll portfolio-style theme for writers.

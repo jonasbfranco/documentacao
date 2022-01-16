@@ -8,8 +8,8 @@ description: > # this means to ignore newlines until "show_exerpts:"
 show_excerpts: true # set to true to show excerpts on the homepage
 
 permalink: ':title/'
-baseurl: "https://jonasbfranco.github.io" # the subpath of your site, e.g. /blog
-url: "/documentacao" # the base hostname & protocol for your site, e.g. http://example.com
+baseurl: "https://jonasbfranco.github.io/" # the subpath of your site, e.g. /blog
+url: "documentacao/" # the base hostname & protocol for your site, e.g. http://example.com
 
 site-twitter: #if your site has a twitter account, enter it here
 
